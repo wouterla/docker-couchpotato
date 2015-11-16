@@ -3,7 +3,7 @@ MAINTAINER tim@haak.co.uk
 
 RUN apt-get -q update && \
     apt-get install -qy --force-yes python-pip build-essential python-dev libffi-dev libssl-dev && \
-    pip install --upgrade cryptography pyopenssl ndg-httpsclient pyasn1 && \
+    pip install --upgrade lxml cryptography pyopenssl ndg-httpsclient pyasn1 && \
     git clone https://github.com/RuudBurger/CouchPotatoServer.git /CouchPotatoServer && \
     apt-get autoremove &&\
     apt-get clean &&\
@@ -16,7 +16,5 @@ ADD ./start.sh /start.sh
 RUN chmod u+x  /start.sh
 
 EXPOSE 5050
-
-
 
 CMD ["/start.sh"]
