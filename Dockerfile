@@ -13,7 +13,7 @@ RUN apk -U upgrade && \
     && \
     pip install pyopenssl && \
     git clone https://github.com/RuudBurger/CouchPotatoServer.git /CouchPotatoServer && \
-    apk del make gcc g++ python-dev
+    apk del make gcc g++ python-dev && \
     rm -rf /tmp/src && \
     rm -rf /var/cache/apk/*
 
