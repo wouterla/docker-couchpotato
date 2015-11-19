@@ -1,14 +1,21 @@
-FROM timhaak/base:latest
-MAINTAINER tim@haak.co.uk
+FROM alpine:edge
+MAINTAINER tim@haak.co
 
-RUN apt-get -q update && \
-    apt-get install -qy --force-yes python-pip build-essential python-dev libffi-dev libssl-dev && \
-    pip install --upgrade lxml cryptography pyopenssl ndg-httpsclient pyasn1 && \
+ENV LANG='en_US.UTF-8' \
+    LANGUAGE='en_US.UTF-8' \
+    TERM='xterm'
+
+RUN apk -U upgrade && \
+    apk -U add \
+        ca-certificates git \
+        py-pip ca-certificates git python py-libxml2 py-lxml py-pip  \
+        make gcc g++ python-dev openssl-dev libffi-dev \
+    && \
+    pip install pyopenssl && \
     git clone https://github.com/RuudBurger/CouchPotatoServer.git /CouchPotatoServer && \
-    apt-get autoremove &&\
-    apt-get clean &&\
-    rm -rf /var/lib/apt/lists/* &&\
-    rm -rf /tmp/*
+    apk del make gcc g++ python-dev
+    rm -rf /tmp/src && \
+    rm -rf /var/cache/apk/*
 
 VOLUME ["/config", "/data"]
 
