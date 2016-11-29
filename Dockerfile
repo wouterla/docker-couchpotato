@@ -11,6 +11,7 @@ RUN apk -U upgrade && \
         py-pip ca-certificates git python py-libxml2 libxml2-dev libxslt-dev \
         make gcc g++ python-dev openssl-dev libffi-dev \
     && \
+    pip --no-cache-dir install --upgrade pip && \
     pip --no-cache-dir install --upgrade setuptools && \
     pip --no-cache-dir install --upgrade pyopenssl  && \
     pip --no-cache-dir install --upgrade lxml && \
